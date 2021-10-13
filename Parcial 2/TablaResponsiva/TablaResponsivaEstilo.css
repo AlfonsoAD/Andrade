@@ -1,7 +1,13 @@
 body {
-  background-color: skyblue;
+  background-color:rgb(5, 136, 145);
   font-family: Arial, Helvetica, sans-serif;
   font-size: 18;
+}
+
+h1{
+ font-size: 35px;
+ color:white;
+ text-align: center;
 }
 
 #contenedor {
@@ -13,10 +19,10 @@ table {
   text-align: center;
   border-collapse: collapse;
   width: 100%;
-}
+} 
 th,
 td {
-  border: solid 3px white;
+  border: solid 3px rgb(2, 2, 95);
   fill: 30px;
 }
 
@@ -35,5 +41,5 @@ thead {
 }
 
 tr:hover td {
-  background-color: rgb(255, 255, 255);
+  background-color: skyblue;
 }

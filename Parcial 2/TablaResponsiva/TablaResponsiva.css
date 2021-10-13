@@ -1,0 +1,63 @@
+@media only screen and (max-width: 900px) {
+  table,
+  thead,
+  tbody,
+  th,
+  td,
+  tr {
+    display: block;
+  }
+
+  tr {
+    border: 2px solid rgb(2, 2, 95);
+  }
+
+  thead tr {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+
+  td {
+    position: relative;
+    padding-left: 50%;
+    border: none;
+    border-bottom: 1px solid rgb(5, 5, 161);
+  }
+
+  td:before {
+    position: absolute;
+    top: 6px;
+    left: 6px;
+    width: 45%;
+    padding-right: 10px;
+  }
+
+  td:nth-of-type(1):before {
+    content: "Nivel";
+  }
+  td:nth-of-type(2):before {
+    content: "Nombre de la escuela";
+  }
+  td:nth-of-type(3):before {
+    content: "Municipio";
+  }
+  td:nth-of-type(4):before {
+    content: "Estado";
+  }
+  td:nth-of-type(5):before {
+    content: "Año Inicial";
+  }
+  td:nth-of-type(6):before {
+    content: "Año Final";
+  }
+  td:nth-of-type(7):before {
+    content: "Especialidad";
+  }
+  td:nth-of-type(8):before {
+    content: "Documento Obtenido";
+  }
+  td:nth-of-type(9):before {
+    content: "Comentarios Adicionales";
+  }
+}
