@@ -1,0 +1,24 @@
+header {
+  background: #070472;
+  color: white;
+}
+
+h1 {
+  text-align: center;
+}
+
+body {
+  background: #067edd;
+  background: linear-gradient(to right, #a6d4f6, #067edd);
+}
+
+.btn {
+  border: 3px solid rgba(100, 100, 100, 0.1);
+  margin-bottom: 20px;
+  padding: 20px;
+  width: 300px;
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  background-size: 300%;
+}
