@@ -16,7 +16,7 @@ try {
         $query->closeCursor();
 
 } catch(PDOException $e) {
-        echo "Error de consulta a la base de datos";
+        echo "Error de consulta a la base de datos:(";
         echo $e->getMessage();
 }
 ?>
