@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <title>PROPAGACIÓN DE EVENTOS - Js</title>
+    <link rel="stylesheet" href="EstiloPEJs.css" />
+  </head>
+
+  <header class="header">
+    <h1>BURBUJEO DE EVENTOS EN JavaScript</h1>
+    <img src="Images/descargar.png" />
+  </header>
+
+  <body>
+    <div class="Container">
+      <h2>Explicación</h2>
+      <p>
+        Se relaciona con el orden en que se llama a los controladores de eventos
+        cuando un elemento está anidado dentro de un segundo elemento, y ambos
+        elementos han registrado un agente de escucha para el mismo evento (un
+        clic, por ejemplo).<br />
+      </p>
+
+      <p>
+        El burbujeo de eventos es solo una pieza del rompecabezas. A menudo se
+        menciona junto con la captura y propagación de eventos. Y una
+        comprensión firme de los tres conceptos es esencial para trabajar con
+        eventos en JavaScript, por ejemplo, si desea implementar el patrón de
+        delegación de eventos.
+      </p>
+
+      <h2>¿Qué es la propagación de eventos?</h2>
+
+      <p>
+        Comencemos con la propagación de eventos. Este es el término general
+        tanto para el burbujeo de eventos como para la captura de eventos.
+        Considere el marcado típico para crear una lista de imágenes vinculadas,
+        por ejemplo, para una galería de miniaturas:
+      </p>
+
+      <p>
+        &ltul&gt <br />
+        &ltli&gt&lta href="..."&gt&ltimg src="..." alt=""&gt&lt/a&gt <br />
+        &ltli&gt&lta href="..."&gt&ltimg src="..." alt=""&gt&lt/a&gt <br />
+        &ltli&gt&lta href="..."&gt&ltimg src="..." alt=""&gt&lt/a&gt <br />
+        &lt/ul&gt
+      </p>
+
+      <p>
+        Un clic en una imagen no solo genera un evento para el elemento
+        correspondiente, sino también para el padre, para el abuelo, etc.,
+        subiendo por todos los antepasados del elemento, antes de terminar en el
+        <strong> objeto.click IMG ALI window </strong>
+      </p>
+
+      <p>
+        En la terminología DOM, la imagen es el destino del evento,el elemento
+        más interno sobre el que se originó el clic. El objetivo del evento, más
+        sus antepasados, desde su padre hasta el objeto, forman una rama en el
+        árbol DOM. Por ejemplo, en la galería de imágenes, esta rama estará
+        compuesta por los nodos: , , , , , , ,
+        <strong> .window IMG ALI UL BODY HTML document window </strong>
+      </p>
+
+      <p>
+        Tenga en cuenta que en realidad no es un nodo DOM, sino que implementa
+        la interfaz, por lo que, para simplificar, lo estamos manejando como si
+        fuera el nodo padre del objeto de
+        <strong>documento.window EventTarget </strong>
+      </p>
+
+      <p>
+        Esta rama es importante porque es el camino a lo largo del cual los
+        eventos se propagan (o fluyen). Esta propagación es el proceso de llamar
+        a todos los agentes de escucha para el tipo de evento dado, conectados a
+        los nodos de la rama. Se llamará a cada oyente con un objeto que
+        recopila información relevante para el evento (más sobre esto más
+        adelante)
+        <strong>.event </strong>
+      </p>
+
+      <p>
+        La propagación es bidireccional, desde la ventana hasta el destino del
+        evento y de regreso. Esta propagación se puede dividir en tres fases:
+        <br />
+        1.Desde la ventana hasta el padre de destino del evento: esta es la fase
+        de captura <br />
+        2.El objetivo del evento en sí: esta es la fase objetivo <br />
+        3.Desde el padre de destino del evento hasta la ventana: la fase de
+        burbuja <br />
+
+        Lo que diferencia a estas fases es el tipo de oyentes a los que se les
+        llama.
+      </p>
+
+      <h2>La fase de captura de eventos</h2>
+
+      <p>
+        En esta fase solo se llama a los oyentes del capturador, es decir,
+        aquellos oyentes que se registraron utilizando un valor de para el
+        tercer parámetro de <strong>addEventListener:true </strong> <br />
+        <strong>el.addEventListener('click', listener, true) </strong> <br />
+        Si se omite este parámetro, su valor predeterminado es false y el agente
+        de escucha no es un capturador. Por lo tanto, durante esta fase, solo se
+        llama a los capturadores que se encuentran en la ruta desde la ventana
+        hasta el padre de destino del evento.
+      </p>
+
+      <h2>La fase de destino del evento</h2>
+
+      <p>
+        En esta fase se invocarán todos los oyentes registrados en el destino
+        del evento, independientemente del valor de su indicador de captura.
+      </p>
+
+      <h2>La fase de burbujeo del evento</h2>
+
+      <p>
+        Durante la fase de burbujeo del evento solo se llamará a los no
+        capturadores. Es decir, solo los oyentes registrados con un valor de
+        para el tercer parámetro de: <strong>falseaddEventListener() </strong>
+      </p>
+
+      <p>
+        <strong>
+          el.addEventListener('click', listener, false) // listener doesn't
+          <br />
+          capture el.addEventListener('click', listener) // listener doesn't
+          capture
+        </strong>
+      </p>
+
+      <p>
+        Tenga en cuenta que, si bien todos los eventos fluyen hacia el destino
+        del evento con la fase de captura, , y algunos otros, no burbujean. Es
+        decir, su viaje se detiene después de la fase
+        <strong> objetivo.focus blur load </strong>
+      </p>
+
+      <p>
+        Por lo tanto, al final de la propagación, cada oyente en la rama ha sido
+        llamado exactamente una vez.
+      </p>
+
+      <p>
+        El burbujeo de eventos no tiene lugar para todo tipo de eventos. Durante
+        la propagación, es posible que un oyente sepa si un evento burbujea
+        leyendo la propiedad booleana del
+        <strong> objeto. .bubbles event </strong>
+      </p>
+
+      <p>
+        Las tres fases de flujo de eventos se ilustran en el siguiente diagrama
+        de la especificación <strong> UIEvents del W3C.</strong>
+      </p>
+
+      <img src="Images/Dia.svg" />
+    </div>
+  </body>
+</html>

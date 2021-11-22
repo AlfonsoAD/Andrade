@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>AJAX - EJEMPLO CONVERSOR GRADOS</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js "></script>
+    <script src="ConversorGradosFC.js"></script>
+    <link rel="stylesheet" href="ConversorGradosFC.css" />
+  </head>
+
+  <header>
+    <h1>CONVERSOR DE GRADOS FARENHEIT A CENTIGRADOS</h1>
+  </header>
+
+  <body>
+    <form
+      class="formd"
+      id="formulario"
+      method="GET"
+      action="ConversorGradosFC.js"
+    >
+      <div class="form-group">
+        <label for="grados">Inserte los grados Farenheit</label>
+        <input type="text" id="grados" name="grados" size="5" />
+      </div>
+
+      <input
+        class="boton"
+        type="button"
+        id="CalcularConversion"
+        value="Convertir a grados Centígrados"
+      />
+
+      <h2>Resultado:</h2>
+
+      <div id="Resultado"></div>
+    </form>
+  </body>
+
+  <footer>
+    <h5>Autor: Jesús Alfonso Andrade Domínguez</h5>
+    <h5>No. Control: 18100149</h5>
+  </footer>
+</html>

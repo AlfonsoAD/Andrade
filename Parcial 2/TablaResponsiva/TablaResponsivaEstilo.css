@@ -1,0 +1,45 @@
+body {
+  background-color:rgb(5, 136, 145);
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 18;
+}
+
+h1{
+ font-size: 35px;
+ color:white;
+ text-align: center;
+}
+
+#contenedor {
+  margin: 300px auto;
+  width: 900px;
+}
+table {
+  background-color: dodgerblue;
+  text-align: center;
+  border-collapse: collapse;
+  width: 100%;
+} 
+th,
+td {
+  border: solid 3px rgb(2, 2, 95);
+  fill: 30px;
+}
+
+#Titulo {
+  background-color: rgb(13, 1, 53);
+}
+
+#Nombre {
+  background-color: skyblue;
+}
+
+thead {
+  background-color: rgb(26, 26, 43);
+  border-bottom: solid;
+  color: rgb(255, 255, 255);
+}
+
+tr:hover td {
+  background-color: skyblue;
+}
