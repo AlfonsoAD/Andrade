@@ -3,7 +3,10 @@
   <head>
     <meta charset="utf-8" />
     <title>INICIO DE SESIÓN - SAN PANCHO FC</title>
-    <link rel="stylesheet" href="Css/EstiloInicio.css"/>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js "></script>
+    <script src="./Js/Inicio.js"></script>
+
+    <link rel="stylesheet" href="Css/EstiloInicio.css" />
   </head>
   <body>
     <div class="login-box">
@@ -13,14 +16,17 @@
       <form>
         <!-- USUARIO -->
         <label for="Usuario">Usuario</label>
-        <input type="text" placeholder="Ingresa tu usuario" />
+        <input type="text" id="IdUser" placeholder="Ingresa tu usuario" />
 
         <!-- CONTRASEÑA -->
         <label for="Contraseña">Contraseña</label>
-        <input type="password" placeholder="Escribe tu contraseña" />
+        <input
+          type="password"
+          id="IdPass"
+          placeholder="Escribe tu contraseña"
+        />
 
-        <input type="submit" value="INGRESAR" />
-        
+        <input type="submit" id="IdIngresar" value="INGRESAR" />
       </form>
     </div>
   </body>
