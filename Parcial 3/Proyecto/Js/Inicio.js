@@ -8,12 +8,12 @@ $("document").ready(function () {
   });
 
   function botonIngresar() {
-    var vLog = $("#IdUser").val();
-    var vPas = $("#idPass").val();
+    var vUser = $("#IdUser").val();
+    var vPas = $("#IdPass").val();
 
-    if (vUser == 'Alfonso' && vPas=='Jesus123') {
+    if (vUser == 'alfonso' && vPas=='jesusav') {
 
-      $.get("./php/Login.php", {paruser: vUser,parPas: vPas});
+      $.get("./Php/Login.php", {parUser: vUser,parPas: vPas});
 
       $('#myModal .modal-header').addClass('modal-header-success');
       $('#myModal .modal-header h5').text('Bienvenido');
