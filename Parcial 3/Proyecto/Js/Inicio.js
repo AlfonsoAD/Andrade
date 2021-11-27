@@ -2,7 +2,7 @@ $("document").ready(function () {
   $("#IdIngresar").click(botonIngresar);
 
   $("#IdPass").keypress(function (e) {
-    if (e.keyCode == 13) {
+    if (e.keyCode == 8) {
       botonIngresar();
     }
   });
@@ -11,19 +11,36 @@ $("document").ready(function () {
     var vLog = $("#IdUser").val();
     var vPas = $("#idPass").val();
 
-    if (vLog == "Alfonso" && vPas == "jesus123") {
-      $.get(
-        "../Php/Login.php",
-        { parLog: vLog, parPas: vPas },
-        console.log("Regreso")
-      );
+    if (vUser == 'Alfonso' && vPas=='Jesus123') {
 
-      console.log("login correcto");
-      $(location).attr('href',"Registro.php");
-      
-    } 
-    else {
-      console.log("login incorrecto");
-    }
+      $.get("./php/Login.php", {paruser: vUser,parPas: vPas});
+
+      $('#myModal .modal-header').addClass('modal-header-success');
+      $('#myModal .modal-header h5').text('Bienvenido');
+      $('#myModal .modal-body p').text('Acceso correcto');
+      $('#myModal').modal();
+
+      $("#myModal").on('shown.bs.modal',function() {
+          $('#Cerrar').focus();
+          });
+      $("#myModal").on('hidden.bs.modal',function() {
+          $('#myModal .modal-header').removeClass('modal-header-success');
+          $(location).attr('href',"Registro.php");
+          });
+
   }
-});
+  else {
+      $('#myModal .modal-header').addClass('modal-header-danger');
+      $('#myModal .modal-header h5').text('Error');
+      $('#myModal .modal-body p').text('Credeciales incorrectas');
+      $('#myModal').modal();
+
+      $("#myModal").on('shown.bs.modal',function() {
+          $('#Cerrar').focus();
+      });
+      $("#myModal").on('hidden.bs.modal',function() {
+          $('#myModal .modal-header').removeClass('modal-header-danger');
+          $('#IdPass').focus();
+      });
+  }
+}});
