@@ -1,9 +1,14 @@
 <?php
 
-include "Conexión.php";
-
 $vLogin   = $_POST['parUser'];
 $vPassword= $_POST['parPas'];
+
+$hostname = 'localhost';
+$database = 'a18100149';
+$username = 'root';
+$password = 'jesus123';
+
+$link = new mysqli($hostname, $username, $password, $database);
 
 if ($link->connect_error) {
         $row['resultado']  = '1';
