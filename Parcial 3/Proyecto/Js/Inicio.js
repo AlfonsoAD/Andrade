@@ -1,4 +1,5 @@
 $("document").ready(function () {
+
   $("#IdIngresar").click(botonIngresar);
 
   $("#IdPass").keypress(function (e) {
@@ -11,36 +12,45 @@ $("document").ready(function () {
     var vUser = $("#IdUser").val();
     var vPas = $("#IdPass").val();
 
-    if (vUser == 'alfonso' && vPas=='jesusav') {
+    $.post(
+      "../Php/Login.php",{ parUser: vUser, parPas: vPas },function (ret) {
 
-      $.get("./Php/Login.php", {parUser: vUser,parPas: vPas});
+        console.log(ret);
+        if (ret["resultado"] == 0) {
+          console.log("Login correcto");
 
-      $('#myModal .modal-header').addClass('modal-header-success');
-      $('#myModal .modal-header h5').text('Bienvenido');
-      $('#myModal .modal-body p').text('Acceso correcto');
-      $('#myModal').modal();
+          $("#myModal .modal-header").addClass("modal-header-success");
+          $("#myModal .modal-header h5").text(ret.mensaje);
+          $("#myModal .modal-body p").text(ret.detalle);
+          $("#myModal").modal();
 
-      $("#myModal").on('shown.bs.modal',function() {
-          $('#Cerrar').focus();
+          $("#myModal").on("shown.bs.modal", function () {
+            $("#Cerrar").focus();
           });
-      $("#myModal").on('hidden.bs.modal',function() {
-          $('#myModal .modal-header').removeClass('modal-header-success');
-          $(location).attr('href',"Registro.php");
+          $("#myModal").on("hidden.bs.modal", function () {
+            $("#myModal .modal-header").removeClass("modal-header-success");
+            $(location).attr("href", "Inicio2.php");
           });
+        } else {
+          console.log("login incorrecto");
 
-  }
-  else {
-      $('#myModal .modal-header').addClass('modal-header-danger');
-      $('#myModal .modal-header h5').text('Error');
-      $('#myModal .modal-body p').text('Credeciales incorrectas');
-      $('#myModal').modal();
+          console.log(ret);
 
-      $("#myModal").on('shown.bs.modal',function() {
-          $('#Cerrar').focus();
-      });
-      $("#myModal").on('hidden.bs.modal',function() {
-          $('#myModal .modal-header').removeClass('modal-header-danger');
-          $('#IdPass').focus();
-      });
+          $("#myModal .modal-header").addClass("modal-header-danger");
+          $("#myModal .modal-header h5").text(ret.mensaje);
+          $("#myModal .modal-body p").text(ret.detalle);
+          $("#myModal").modal();
+
+          $("#myModal").on("shown.bs.modal", function () {
+            $("#Cerrar").focus();
+          });
+          $("#myModal").on("hidden.bs.modal", function () {
+            $("#myModal .modal-header").removeClass("modal-header-danger");
+            $("#IdUser").focus();
+          });
+        }
+      },
+      "json"
+    );
   }
-}});
+});
