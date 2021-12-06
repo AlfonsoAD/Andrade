@@ -11,9 +11,9 @@ $("document").ready(function () {
   function botonIngresar() {
     var vUser = $("#IdUser").val();
     var vPas = $("#IdPass").val();
-
+    console.log("entró");
     $.post(
-      "../Php/Login.php",{ parUser: vUser, parPas: vPas },function (ret) {
+      "./Php/Login.php",{ parUser: vUser, parPas: vPas },function (ret) {
 
         console.log(ret);
         if (ret["resultado"] == 0) {

@@ -46,7 +46,7 @@ if ($link->connect_error) {
 }
 
 
- var_dump($row);
+// var_dump($row);
 
 
 $encoded_row = array_map('utf8_encode',$row);
