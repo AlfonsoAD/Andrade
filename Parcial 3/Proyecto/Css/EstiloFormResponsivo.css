@@ -55,7 +55,7 @@ body {
   color: #225378;
 }
 
-.container input[type="submit"] {
+.container .boton {
   border: none;
   outline: none;
   height: 50px;
@@ -66,7 +66,7 @@ body {
   border-radius: 20px;
 }
 
-.container input[type="submit"]:hover {
+.container .boton:hover {
   cursor: pointer;
   background: #50EB4B;
   color: #0FAF0A;
