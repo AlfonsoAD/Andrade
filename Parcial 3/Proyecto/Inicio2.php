@@ -14,7 +14,6 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" href="Css/EstiloInicio2.css" >
     <script src="Js/Inicio.js"></script>
-	<script src="Js/Inicio2.js"></script>
     <title>BIENVENIDO - SPFC</title>
 </head>
 <body>

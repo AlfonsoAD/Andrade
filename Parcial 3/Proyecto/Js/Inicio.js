@@ -8,6 +8,7 @@ $("document").ready(function () {
     }
   });
 
+  //Funcion para ingresar en el login
   function botonIngresar() {
     var vUser = $("#IdUser").val();
     var vPas = $("#IdPass").val();
@@ -53,4 +54,8 @@ $("document").ready(function () {
       "json"
     );
   }
+  
+  $("#Cerrar").click(function (){
+
+  });
 });
