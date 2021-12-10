@@ -32,32 +32,31 @@ $("document").ready(function () {
         dor: vdor,
       },
       function (ret) {
-        if (ret["resultado"] == 0) {
-          console.log("Exito");
-          Swal.fire("Exito");
-          Limpiar();
+        if (ret["resultado"] != 0) {
+          alert("Exito")
         } else {
-          Swal.fire("Error");
+          alert("Error")
         }
       },
       "json"
     );
   });
   //-----------------------------------------------------------------------------------------------
- //Listado de jugadores
-  $('#tablaUsuarios').DataTable( {
+  //Listado de jugadores
+  $('#tablaJugadores').DataTable( {
     "ajax":{
-        "url": "baseDeDatos/consulta.php",
+        "url": "Php/Consulta.php",
         "dataSrc":""
     },
     "columns":[
-        {"data": "user_id"},
-        {"data": "username"},
-        {"data": "first_name"},
-        {"data": "last_name"},
-        {"data": "gender"},
-        {"data": "password"},
-        {"data": "status"}
+        {"data": "IdJugador"},
+        {"data": "Nombre"},
+        {"data": "ApellidoP"},
+        {"data": "ApellidoM"},
+        {"data": "FechaNac"},
+        {"data": "Nacionalidad"},
+        {"data": "Dorsal"},
+        {"data": "Posicion"}
     ]  
   });
 });

@@ -1,5 +1,4 @@
 $("document").ready(function () {
-
   $("#IdIngresar").click(botonIngresar);
 
   $("#IdPass").keypress(function (e) {
@@ -12,10 +11,11 @@ $("document").ready(function () {
   function botonIngresar() {
     var vUser = $("#IdUser").val();
     var vPas = $("#IdPass").val();
-    
-    $.post(
-      "./Php/Login.php",{ parUser: vUser, parPas: vPas },function (ret) {
 
+    $.post(
+      "./Php/Login.php",
+      { parUser: vUser, parPas: vPas },
+      function (ret) {
         console.log(ret);
         if (ret["resultado"] == 0) {
           console.log("Login correcto");
@@ -54,8 +54,6 @@ $("document").ready(function () {
       "json"
     );
   }
-  
-  $("#Cerrar").click(function (){
 
-  });
+  $("#Cerrar").click(function () {});
 });
