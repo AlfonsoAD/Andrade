@@ -1,5 +1,15 @@
 $("document").ready(function () {
-  
+  //Función para limpiar
+  function Limpiar() {
+    document.getElementById("idNombre").value = "";
+    document.getElementById("idApellidoP").value = "";
+    document.getElementById("idApellidoM").value = "";
+    document.getElementById("idFechaN").value = "";
+    document.getElementById("idNacion").value = "";
+    document.getElementById("idPosicion").value = "";
+    document.getElementById("idDorsal").value = "";
+  }
+  //--------------------------------------------------------------------------------------------
   //Realizar una alta en la base de datos
   $("#btnRegistrar").click(function () {
     var vnombre = $("#idNombre").val();
@@ -25,11 +35,29 @@ $("document").ready(function () {
         if (ret["resultado"] == 0) {
           console.log("Exito");
           Swal.fire("Exito");
+          Limpiar();
         } else {
           Swal.fire("Error");
         }
       },
       "json"
     );
+  });
+  //-----------------------------------------------------------------------------------------------
+ //Listado de jugadores
+  $('#tablaUsuarios').DataTable( {
+    "ajax":{
+        "url": "baseDeDatos/consulta.php",
+        "dataSrc":""
+    },
+    "columns":[
+        {"data": "user_id"},
+        {"data": "username"},
+        {"data": "first_name"},
+        {"data": "last_name"},
+        {"data": "gender"},
+        {"data": "password"},
+        {"data": "status"}
+    ]  
   });
 });
