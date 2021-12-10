@@ -6,7 +6,7 @@ $("document").ready(function () {
       botonIngresar();
     }
   });
-
+  //--------------------------------------------------------------------------------------------
   //Funcion para ingresar en el login
   function botonIngresar() {
     var vUser = $("#IdUser").val();
@@ -19,41 +19,41 @@ $("document").ready(function () {
         console.log(ret);
         if (ret["resultado"] == 0) {
           console.log("Login correcto");
-
-          $("#myModal .modal-header").addClass("modal-header-success");
-          $("#myModal .modal-header h5").text(ret.mensaje);
-          $("#myModal .modal-body p").text(ret.detalle);
-          $("#myModal").modal();
-
-          $("#myModal").on("shown.bs.modal", function () {
-            $("#Cerrar").focus();
-          });
-          $("#myModal").on("hidden.bs.modal", function () {
-            $("#myModal .modal-header").removeClass("modal-header-success");
-            $(location).attr("href", "Inicio2.php");
-          });
+          MostrarAlerta("Exito", "Bienvenido" + ret.detalle, "success");
+          $(location).attr("href", "Inicio2.php");
         } else {
           console.log("login incorrecto");
-
-          console.log(ret);
-
-          $("#myModal .modal-header").addClass("modal-header-danger");
-          $("#myModal .modal-header h5").text(ret.mensaje);
-          $("#myModal .modal-body p").text(ret.detalle);
-          $("#myModal").modal();
-
-          $("#myModal").on("shown.bs.modal", function () {
-            $("#Cerrar").focus();
-          });
-          $("#myModal").on("hidden.bs.modal", function () {
-            $("#myModal .modal-header").removeClass("modal-header-danger");
-            $("#IdUser").focus();
-          });
+          MostrarAlerta(
+            "Error al ingresar",
+            "Ingresa bien tus credenciales",
+            "error"
+          );
         }
       },
       "json"
     );
   }
+  //-------------------------------------------------------------------------------------------------------
+  //Funcion cerrar sesión
+  $("#Cerrar").click(function () {
+    Swal.fire({
+      title: "Seguro quieres salir?",
+      icon: "warning",
+      showCancelButton: "Cancelar",
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Si, cerrar sesión",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire("Has cerrado la sesión!", "Que tengas buen día", "success");
+        $(location).attr("href", "Inicio.html");
+      }
+    });
+  });
 
-  $("#Cerrar").click(function () {});
+  //-----------------------------------------------------------------------------------------------
+  //Mostrar alerta
+  function MostrarAlerta(titulo, descripcion, tipoError) {
+    Swal.fire(titulo, descripcion, tipoError);
+  }
 });

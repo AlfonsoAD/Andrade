@@ -9,6 +9,15 @@ $("document").ready(function () {
     document.getElementById("idPosicion").value = "";
     document.getElementById("idDorsal").value = "";
   }
+  //-------------------------------------------------------------------------------------------
+  function MostrarAlerta(titulo,descripcion,tipoError)
+  {
+    Swal.fire(
+      titulo,
+      descripcion,
+      tipoError
+    );
+  }
   //--------------------------------------------------------------------------------------------
   //Realizar una alta en la base de datos
   $("#btnRegistrar").click(function () {
@@ -32,31 +41,33 @@ $("document").ready(function () {
         dor: vdor,
       },
       function (ret) {
-        if (ret["resultado"] != 0) {
-          alert("Exito");
+        console.log(ret);
+        var Resp = ret.resultado;
+
+        if (Resp == 0) {
+          MostrarAlerta("Exito","Datos guardados con exito","success");
         } else {
-          alert("Error");
+          MostrarAlerta("Error","Error al insertar","error");
         }
-      },
-      "json"
+      }
     );
   });
   //-----------------------------------------------------------------------------------------------
   //Listado de jugadores
   $("#tablaJugadores").DataTable({
-    "ajax": {
-      "url": "Php/Consulta.php",
-      "dataSrc": "",
+    ajax: {
+      url: "Php/Consulta.php",
+      dataSrc: "",
     },
-    "columns": [
-      { "data": "IdJugador" },
-      { "data": "Nombre" },
-      { "data": "ApellidoP" },
-      { "data": "ApellidoM" },
-      { "data": "FechaNac" },
-      { "data": "Nacionalidad" },
-      { "data": "Dorsal" },
-      { "data": "Posicion" },
+    columns: [
+      { data: "IdJugador" },
+      { data: "Nombre" },
+      { data: "ApellidoP" },
+      { data: "ApellidoM" },
+      { data: "FechaNac" },
+      { data: "Nacionalidad" },
+      { data: "Dorsal" },
+      { data: "Posicion" },
     ],
   });
   //--------------------------------------------------------------------------------------------------
