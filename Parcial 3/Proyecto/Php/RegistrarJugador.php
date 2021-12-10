@@ -15,7 +15,6 @@ $password = 'jesus123';
 
 try {
     $dbh = new PDO("mysql:host=$hostname;dbname=$database", $username, $password);
-    echo "conectado";
 } catch(PDOException $e) {
     $row['resultado']  = '1';
     $row['informacion']= 'Error DB';

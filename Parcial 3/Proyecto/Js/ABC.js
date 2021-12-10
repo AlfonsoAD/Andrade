@@ -10,13 +10,8 @@ $("document").ready(function () {
     document.getElementById("idDorsal").value = "";
   }
   //-------------------------------------------------------------------------------------------
-  function MostrarAlerta(titulo,descripcion,tipoError)
-  {
-    Swal.fire(
-      titulo,
-      descripcion,
-      tipoError
-    );
+  function MostrarAlerta(titulo, descripcion, tipoError) {
+    Swal.fire(titulo, descripcion, tipoError);
   }
   //--------------------------------------------------------------------------------------------
   //Realizar una alta en la base de datos
@@ -43,13 +38,13 @@ $("document").ready(function () {
       function (ret) {
         console.log(ret);
         var Resp = ret.resultado;
-
+        console.log(Resp);
         if (Resp == 0) {
-          MostrarAlerta("Exito","Datos guardados con exito","success");
+          MostrarAlerta("Exito", "Datos guardados con exito", "success");
         } else {
-          MostrarAlerta("Error","Error al insertar","error");
+          MostrarAlerta("Error", "Error al insertar", "error");
         }
-      }
+      },'json'
     );
   });
   //-----------------------------------------------------------------------------------------------
