@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -25,9 +25,19 @@
     </header>
     
     <body>
+
+    <div class="botones">
+        <!--Label-->
+            <label for="eliminar">Ingresa el ID: </label>
+            <input id="eliminar">
+
+            <!--Botones-->
+            <button id="btnEliminar" type="button" class="btn btn-primary">Eliminar</button>
+     </div>
      <div class="container">
        <div class="row">
            <div class="col-lg-12">
+            
             <table id="tablaJugadores" class="table-striped table-bordered" style="width:100%">
                 <thead>
                  <tr>

@@ -33,9 +33,9 @@ $("document").ready(function () {
       },
       function (ret) {
         if (ret["resultado"] != 0) {
-          alert("Exito")
+          alert("Exito");
         } else {
-          alert("Error")
+          alert("Error");
         }
       },
       "json"
@@ -43,20 +43,42 @@ $("document").ready(function () {
   });
   //-----------------------------------------------------------------------------------------------
   //Listado de jugadores
-  $('#tablaJugadores').DataTable( {
-    "ajax":{
-        "url": "Php/Consulta.php",
-        "dataSrc":""
+  $("#tablaJugadores").DataTable({
+    "ajax": {
+      "url": "Php/Consulta.php",
+      "dataSrc": "",
     },
-    "columns":[
-        {"data": "IdJugador"},
-        {"data": "Nombre"},
-        {"data": "ApellidoP"},
-        {"data": "ApellidoM"},
-        {"data": "FechaNac"},
-        {"data": "Nacionalidad"},
-        {"data": "Dorsal"},
-        {"data": "Posicion"}
-    ]  
+    "columns": [
+      { "data": "IdJugador" },
+      { "data": "Nombre" },
+      { "data": "ApellidoP" },
+      { "data": "ApellidoM" },
+      { "data": "FechaNac" },
+      { "data": "Nacionalidad" },
+      { "data": "Dorsal" },
+      { "data": "Posicion" },
+    ],
+  });
+  //--------------------------------------------------------------------------------------------------
+  //Eliminar jugadores
+  $("#btnEliminar").click(function () {
+    var vid = $("#eliminar").val();
+
+    if (confirm("Borrar")) {
+      $.post(
+        "./Php/Eliminar.php",
+        { id: vid },
+        function (ret) {
+          alert("Borrado");
+        },
+        "json"
+      );
+
+      location.reload();
+
+      $("input").val("");
+    } else {
+      alert("No se borra");
+    }
   });
 });
