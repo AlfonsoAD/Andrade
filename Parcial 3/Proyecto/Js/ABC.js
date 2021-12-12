@@ -43,15 +43,15 @@ $("document").ready(function () {
           var Resp = ret.resultado;
           console.log(Resp);
           if (Resp == 0) {
-            MostrarAlerta("Exito", "Datos guardados con exito", "success");
             Limpiar();
+            location.reload();
+            MostrarAlerta("Exito", "Datos guardados con exito", "success");
           } else {
             MostrarAlerta("Error", "Error al insertar", "error");
           }
         },
         "json"
       );
-      location.reload();
     }
   });
   //--------------------------------------------------------------------------------------------------
