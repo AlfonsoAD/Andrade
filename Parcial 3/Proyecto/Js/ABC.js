@@ -24,7 +24,15 @@ $("document").ready(function () {
     var vnac = $("#idNacion").val();
     var vpos = $("#idPosicion").val();
     var vdor = $("#idDorsal").val();
-    if (vnombre | vapp | vapm | vfecn | vnac | vpos | (vdor == "")) {
+    if (
+      (vnombre == "") |
+      (vapp == "") |
+      (vapm == "") |
+      (vfecn == "") |
+      (vnac == "") |
+      (vpos == "") |
+      (vdor == "")
+    ) {
       MostrarAlerta("Error", "Llena todos los campos", "error");
     } else {
       $.post(
@@ -43,9 +51,19 @@ $("document").ready(function () {
           var Resp = ret.resultado;
           console.log(Resp);
           if (Resp == 0) {
-            Limpiar();
-            location.reload();
-            MostrarAlerta("Exito", "Datos guardados con exito", "success");
+            Swal.fire({
+              title: "Desea registrar un nuevo jugador?",
+              showDenyButton: true,
+              confirmButtonText: "Si, registrar",
+              denyButtonText: `No, mejor no`,
+            }).then((result) => {
+              if (result.isConfirmed) {
+                Limpiar();
+                location.reload();
+              } else if (result.isDenied) {
+                Swal.fire("Has cancelado el registro", "", "info");
+              }
+            });
           } else {
             MostrarAlerta("Error", "Error al insertar", "error");
           }
@@ -55,7 +73,7 @@ $("document").ready(function () {
     }
   });
   //--------------------------------------------------------------------------------------------------
-  //Eliminar jugadores
+  //Realizar una baja en la base de datos
   $("#btnEliminar").click(function () {
     Swal.fire({
       title: "Eliminar jugador",
@@ -63,31 +81,73 @@ $("document").ready(function () {
       input: "text",
       showCancelButton: true,
       confirmButtonText: "Eliminar",
-      canceñmButtonText: "Cancelar",
-    }).then((resultado) => {
-      if (resultado.value) {
-        let Id = resultado.value;
-        $.post(
-          "./Php/Eliminar.php",
-          { id: Id },
-          function (ret) {
-            if (ret.resultado == 0) {
-              location.reload();
-              MostrarAlerta("Exito", "Se ha eliminado con exito", "success");
-            } else {
-              MostrarAlerta("Error", "Algo ha salido mal", "error");
-            }
-          },
-          "json"
-        );
+      confirmButtonColor:"#19cc16",
+      cancelButtonText: "Cancelar",
+      cancelButtonColor:"#db0226",
+    }).then((result) => {
+      if (result.value) {
+        let Id = result.value;
+        if (result.isConfirmed) {
+          $.post(
+            "./Php/Eliminar.php",
+            { id: Id },
+            function (ret) {
+              if (ret.resultado == 0) {
+                location.reload();
+              } else {
+                MostrarAlerta("Error", "Algo ha salido mal", "error");
+              }
+            },
+            "json"
+          );
+        } 
       }
     });
   });
   //-----------------------------------------------------------------------------------------------
-  //Listado de jugadores
+  //Realizar consulta en la base de datos para modificar datos de un jugador
+  $("#btnUpdate").click(function () {
+    Swal.fire({
+      title: "Modificación",
+      text: "Ingresa el ID del jugador que quieres modificar",
+      input: "text",
+      showCancelButton: true,
+      confirmButtonText: "Ok",
+      confirmButtonColor:"#19cc16",
+      cancelButtonText: "Cancelar",
+      cancelButtonColor:"#db0226",
+    }).then((result) => {
+      if (result.value) {
+        let Id = result.value;
+        if (result.isConfirmed) {
+          $.post(
+            "./Php/Consulta_Update.php",
+            { idJ: Id },
+            function (ret) {
+              if (ret.resultado == 0) {
+                $("#idJugador").val(ret.detalle.IdJugador);
+                $("#idNombre").val(ret.detalle.Nombre);
+                $("#idApellidoP").val(ret.detalle.ApellidoP);
+                $("#idApellidoM").val(ret.detalle.ApellidoM);
+                $("#idFechaN").val(ret.detalle.FechaNac);
+                $("#idNacion").val(ret.detalle.Nacionalidad);
+                $("#idPosicion").val(ret.detalle.Posicion);
+                $("#idDorsal").val(ret.detalle.Dorsal);
+              } else {
+                MostrarAlerta("Error", "Algo ha salido mal", "error");
+              }
+            },
+            "json"
+          );
+        } 
+      }
+    });
+  });
+  //-----------------------------------------------------------------------------------------------
+  //Listado de jugadores traida desde la base de datos
   $("#tablaJugadores").DataTable({
     ajax: {
-      url: "Php/Consulta.php",
+      url: "Php/Listado.php",
       dataSrc: "",
     },
     columns: [

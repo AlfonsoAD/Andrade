@@ -65,7 +65,7 @@ body {
   position: relative;
 }
 
-.Formulario .boton {
+.Formulario .btn-register-save {
   border: none;
   outline: none;
   height: 50px;
@@ -76,11 +76,26 @@ body {
   border-radius: 10px;
 }
 
-.Formulario .boton:hover {
+.Formulario .btn-register-save:hover {
   cursor: pointer;
   background: #50eb4b;
 }
 
+.Formulario .btn-update-save {
+  border: none;
+  outline: none;
+  height: 50px;
+  width: 200px;
+  background: #095ee6;
+  color: #fff;
+  font-size: 18px;
+  border-radius: 10px;
+}
+
+.Formulario .btn-update-save:hover {
+  cursor: pointer;
+  background: #408ed6;
+}
 /*Estilos para contenedor de la tabla y tabla*/
 .col-lg-12 {
   background: #e7f4fc;
@@ -90,25 +105,47 @@ body {
   position: relative;
   transform: translate(-48%, 40%);
   box-sizing: border-box;
+  padding-top: 15px;
   padding-bottom: 30px;
   width: 900px;
-  text-align: center;
 }
 
-.btn-eli {
-  padding-top: 10px;
-  padding-bottom: 15px;
-  text-align: center;
+.btns {
+  display: inline;
 }
 
-.btn-eli .btn-delete {
-  height: 40px;
+.btns .btn-delete {
   background: #f54242;
+  margin-bottom: 10px;
+  border: none;
+  outline: none;
+  height: 50px;
+  width: 200px;
   color: #fff;
   font-size: 18px;
   border-radius: 10px;
+}
+
+.btns .btn-delete:hover {
+  cursor: pointer;
+  background: #f56c62;
+}
+
+.btns .btn-update {
+  background: #095ee6;
+  color: #fff;
+  font-size: 18px;
+  margin-bottom: 10px;
   border: none;
   outline: none;
+  height: 50px;
+  width: 200px;
+  border-radius: 10px;
+}
+
+.btns .btn-update:hover {
+  cursor: pointer;
+  background: #408ed6;
 }
 
 table.dataTable thead {

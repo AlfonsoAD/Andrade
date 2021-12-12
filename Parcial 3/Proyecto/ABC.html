@@ -56,14 +56,20 @@
   <body>
     <!--FORMULARIO REGISTRO DE JUGADORES ----------------------------------------------------- -->
     <div class="Formulario">
-      <h3>Registro de jugadores</h3>
+      <h3>Registrar/Modificar jugadores</h3>
       <form>
         <div class="row">
+          <div class="form-group">
+            <label for="idJugador">Id Jugador(s)</label>
+            <input id="idJugador" type="text" class="form-control" disabled />
+          </div>
+
           <div class="form-group">
             <label for="idNombre">Nombre(s)</label>
             <input id="idNombre" type="text" class="form-control" />
           </div>
-
+        </div>
+        <div class="row">
           <div class="form-group">
             <label for="idApellidoP">Apellido Paterno</label>
             <input id="idApellidoP" type="text" class="form-control" />
@@ -103,9 +109,13 @@
         <input
           type="button"
           id="btnRegistrar"
-          class="boton"
+          class="btn-register-save"
           value="REGISTRAR"
         />
+        <!--Boton modificar-->
+        <button id="btnUpdateSave" type="button" class="btn-update-save">
+          ACTUALIZACION
+        </button>
       </form>
     </div>
 
@@ -113,11 +123,15 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-12">
-          <!--Boton registrar-->
-          <div class="btn-eli">
-            <h5>Botón para eliminar jugador</h5>
+          <!--Boton eliminar-->
+          <div class="btns">
+            <h5>Botones para eliminar y modificar jugadores</h5>
             <button id="btnEliminar" type="button" class="btn-delete">
               Eliminar
+            </button>
+            <!--Boton modificar-->
+            <button id="btnUpdate" type="button" class="btn-update">
+              Modificar
             </button>
           </div>
           <!--Tabla-->
