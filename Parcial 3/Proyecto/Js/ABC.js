@@ -10,6 +10,7 @@ $("document").ready(function () {
     document.getElementById("idDorsal").value = "";
   }
   //-------------------------------------------------------------------------------------------
+  //Funcion de alerta
   function MostrarAlerta(titulo, descripcion, tipoError) {
     Swal.fire(titulo, descripcion, tipoError);
   }
@@ -23,29 +24,64 @@ $("document").ready(function () {
     var vnac = $("#idNacion").val();
     var vpos = $("#idPosicion").val();
     var vdor = $("#idDorsal").val();
-
-    $.post(
-      "./Php/RegistrarJugador.php",
-      {
-        nom: vnombre,
-        app: vapp,
-        apm: vapm,
-        fecn: vfecn,
-        nac: vnac,
-        pos: vpos,
-        dor: vdor,
-      },
-      function (ret) {
-        console.log(ret);
-        var Resp = ret.resultado;
-        console.log(Resp);
-        if (Resp == 0) {
-          MostrarAlerta("Exito", "Datos guardados con exito", "success");
-        } else {
-          MostrarAlerta("Error", "Error al insertar", "error");
-        }
-      },'json'
-    );
+    if (vnombre | vapp | vapm | vfecn | vnac | vpos | (vdor == "")) {
+      MostrarAlerta("Error", "Llena todos los campos", "error");
+    } else {
+      $.post(
+        "./Php/RegistrarJugador.php",
+        {
+          nom: vnombre,
+          app: vapp,
+          apm: vapm,
+          fecn: vfecn,
+          nac: vnac,
+          pos: vpos,
+          dor: vdor,
+        },
+        function (ret) {
+          console.log(ret);
+          var Resp = ret.resultado;
+          console.log(Resp);
+          if (Resp == 0) {
+            MostrarAlerta("Exito", "Datos guardados con exito", "success");
+            Limpiar();
+          } else {
+            MostrarAlerta("Error", "Error al insertar", "error");
+          }
+        },
+        "json"
+      );
+      location.reload();
+    }
+  });
+  //--------------------------------------------------------------------------------------------------
+  //Eliminar jugadores
+  $("#btnEliminar").click(function () {
+    Swal.fire({
+      title: "Eliminar jugador",
+      text: "Ingresa el ID del jugador a eliminar",
+      input: "text",
+      showCancelButton: true,
+      confirmButtonText: "Eliminar",
+      canceñmButtonText: "Cancelar",
+    }).then((resultado) => {
+      if (resultado.value) {
+        let Id = resultado.value;
+        $.post(
+          "./Php/Eliminar.php",
+          { id: Id },
+          function (ret) {
+            if (ret.resultado == 0) {
+              location.reload();
+              MostrarAlerta("Exito", "Se ha eliminado con exito", "success");
+            } else {
+              MostrarAlerta("Error", "Algo ha salido mal", "error");
+            }
+          },
+          "json"
+        );
+      }
+    });
   });
   //-----------------------------------------------------------------------------------------------
   //Listado de jugadores
@@ -66,25 +102,4 @@ $("document").ready(function () {
     ],
   });
   //--------------------------------------------------------------------------------------------------
-  //Eliminar jugadores
-  $("#btnEliminar").click(function () {
-    var vid = $("#eliminar").val();
-
-    if (confirm("Borrar")) {
-      $.post(
-        "./Php/Eliminar.php",
-        { id: vid },
-        function (ret) {
-          alert("Borrado");
-        },
-        "json"
-      );
-
-      location.reload();
-
-      $("input").val("");
-    } else {
-      alert("No se borra");
-    }
-  });
 });

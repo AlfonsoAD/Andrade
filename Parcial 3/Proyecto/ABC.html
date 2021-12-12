@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <!--Bootstrap CSS-->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
+    <!--Datatables-->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.datatables.net/v/bs4/dt-1.10.20/datatables.min.css"
+    />
+    <!--Script-->
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+      integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      type="text/javascript"
+      src="https://cdn.datatables.net/v/bs4/dt-1.10.20/datatables.min.js"
+    ></script>
+    <script src="./RecursosSA/package/dist/sweetalert2.all.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="./RecursosSA/package/dist/sweetalert2.min.css"
+    />
+    <script src="Js/ABC.js"></script>
+    <!--Estilo propio-->
+    <link rel="stylesheet" href="Css/EstiloABC.css" />
+    <title>LISTADO JUGADORES - SPFC</title>
+  </head>
+
+  <!--HEADER -------------------------------------------------------------------------------- -->
+  <header class="header">
+    <h2 class="text-center">JUGADORES</h2>
+    <h3 class="text-center">SAN PANCHO FC</h3>
+    <img src="Img/Logo.png" alt="Logo" />
+  </header>
+
+  <body>
+    <!--FORMULARIO REGISTRO DE JUGADORES ----------------------------------------------------- -->
+    <div class="Formulario">
+      <h3>Registro de jugadores</h3>
+      <form>
+        <div class="row">
+          <div class="form-group">
+            <label for="idNombre">Nombre(s)</label>
+            <input id="idNombre" type="text" class="form-control" />
+          </div>
+
+          <div class="form-group">
+            <label for="idApellidoP">Apellido Paterno</label>
+            <input id="idApellidoP" type="text" class="form-control" />
+          </div>
+
+          <div class="form-group">
+            <label for="idApellidoM">Apellido Materno</label>
+            <input id="idApellidoM" type="text" class="form-control" />
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="form-group">
+            <label for="idFechaN">Fecha Nacimiento</label>
+            <input id="idFechaN" type="date" class="form-control" />
+          </div>
+
+          <div class="form-group">
+            <label for="idNacion">Nacionalidad</label>
+            <input id="idNacion" type="text" class="form-control" />
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="form-group">
+            <label for="idPosicion">Posicion</label>
+            <input id="idPosicion" type="text" class="form-control" />
+          </div>
+
+          <div class="form-group">
+            <label for="idDorsal">Dorsal</label>
+            <input id="idDorsal" type="text" class="form-control" />
+          </div>
+        </div>
+
+        <!--Boton registrar-->
+        <input
+          type="button"
+          id="btnRegistrar"
+          class="boton"
+          value="REGISTRAR"
+        />
+      </form>
+    </div>
+
+    <!--TABLA DE JUGADORES ---------------------------------------------------------------------- -->
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <!--Boton registrar-->
+          <div class="btn-eli">
+            <h5>Botón para eliminar jugador</h5>
+            <button id="btnEliminar" type="button" class="btn-delete">
+              Eliminar
+            </button>
+          </div>
+          <!--Tabla-->
+          <table
+            id="tablaJugadores"
+            class="table-striped table-bordered"
+            style="width: 100%"
+          >
+            <thead>
+              <tr>
+                <th>IdJugador</th>
+                <th>Nombre</th>
+                <th>Apellido Paterno</th>
+                <th>Apellido Materno</th>
+                <th>Fecha Nacimiento</th>
+                <th>Nacionalidad</th>
+                <th>Dorsal</th>
+                <th>Posición</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

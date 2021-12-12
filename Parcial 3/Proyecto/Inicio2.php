@@ -41,8 +41,7 @@
 <div class="container-menu">
 	<div class="cont-menu">
 		<nav>
-			<a href="Registro.html">Registrar jugadores</a>
-			<a href="Listado.php">Lista de jugadores</a>
+			<a href="ABC.html">Jugadores</a>
 		</nav>
 		<label for="btn-menu">✖️</label>
 	</div>

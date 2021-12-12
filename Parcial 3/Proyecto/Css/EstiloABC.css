@@ -1,0 +1,117 @@
+/*Estilos para el header*/
+header {
+  background-color: #225378;
+  font-family: sans-serif;
+  color: #e7f4fc;
+  height: 110px;
+  padding: 1.4rem 0;
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  text-align: center;
+}
+
+.header img {
+  width: 110px;
+  height: 110px;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+/*Estilos para body*/
+body {
+  margin: 0;
+  padding: 0;
+  background: url(../Img/Fondo.jpg);
+  background-size: cover;
+  font-family: sans-serif;
+  height: 100vh;
+  background-color: white;
+  padding-top: 30px;
+}
+
+/*Estilos para el formulario*/
+.Formulario {
+  background: #e7f4fc;
+  color: #225378;
+  top: 50%;
+  left: 50%;
+  position: relative;
+  transform: translate(-50%, -50%);
+  box-sizing: border-box;
+  padding: 30px 30px;
+  width: 900px;
+  margin-top: 40px;
+}
+
+.Formulario h3 {
+  color: #225378;
+  font-size: 3em;
+  text-align: center;
+}
+
+.row {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-gap: 30px;
+  gap: 30px;
+}
+
+.row .form-group {
+  width: 100%;
+  position: relative;
+}
+
+.Formulario .boton {
+  border: none;
+  outline: none;
+  height: 50px;
+  width: 200px;
+  background: #0faf0a;
+  color: #fff;
+  font-size: 18px;
+  border-radius: 10px;
+}
+
+.Formulario .boton:hover {
+  cursor: pointer;
+  background: #50eb4b;
+}
+
+/*Estilos para contenedor de la tabla y tabla*/
+.col-lg-12 {
+  background: #e7f4fc;
+  color: #225378;
+  top: 50%;
+  left: 50%;
+  position: relative;
+  transform: translate(-48%, 40%);
+  box-sizing: border-box;
+  padding-bottom: 30px;
+  width: 900px;
+  text-align: center;
+}
+
+.btn-eli {
+  padding-top: 10px;
+  padding-bottom: 15px;
+  text-align: center;
+}
+
+.btn-eli .btn-delete {
+  height: 40px;
+  background: #f54242;
+  color: #fff;
+  font-size: 18px;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+}
+
+table.dataTable thead {
+  background: #225378;
+  color: white;
+}
