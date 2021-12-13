@@ -69,7 +69,7 @@ body {
   border: none;
   outline: none;
   height: 50px;
-  width: 200px;
+  width: 245px;
   background: #0faf0a;
   color: #fff;
   font-size: 18px;
@@ -81,21 +81,6 @@ body {
   background: #50eb4b;
 }
 
-.Formulario .btn-update-save {
-  border: none;
-  outline: none;
-  height: 50px;
-  width: 200px;
-  background: #095ee6;
-  color: #fff;
-  font-size: 18px;
-  border-radius: 10px;
-}
-
-.Formulario .btn-update-save:hover {
-  cursor: pointer;
-  background: #408ed6;
-}
 /*Estilos para contenedor de la tabla y tabla*/
 .col-lg-12 {
   background: #e7f4fc;

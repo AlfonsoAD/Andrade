@@ -17,6 +17,7 @@ $("document").ready(function () {
   //--------------------------------------------------------------------------------------------
   //Realizar una alta en la base de datos
   $("#btnRegistrar").click(function () {
+    var vidj = $("#idJugador").val();
     var vnombre = $("#idNombre").val();
     var vapp = $("#idApellidoP").val();
     var vapm = $("#idApellidoM").val();
@@ -24,52 +25,57 @@ $("document").ready(function () {
     var vnac = $("#idNacion").val();
     var vpos = $("#idPosicion").val();
     var vdor = $("#idDorsal").val();
-    if (
-      (vnombre == "") |
-      (vapp == "") |
-      (vapm == "") |
-      (vfecn == "") |
-      (vnac == "") |
-      (vpos == "") |
-      (vdor == "")
-    ) {
-      MostrarAlerta("Error", "Llena todos los campos", "error");
+
+    if (vidj == "") {
+      if (
+        (vnombre == "") |
+        (vapp == "") |
+        (vapm == "") |
+        (vfecn == "") |
+        (vnac == "") |
+        (vpos == "") |
+        (vdor == "")
+      ) {
+        MostrarAlerta("Error", "Llena todos los campos", "error");
+      } else {
+        $.post(
+          "./Php/RegistrarJugador.php",
+          {
+            nom: vnombre,
+            app: vapp,
+            apm: vapm,
+            fecn: vfecn,
+            nac: vnac,
+            pos: vpos,
+            dor: vdor,
+          },
+          function (ret) {
+            console.log(ret);
+            var Resp = ret.resultado;
+            console.log(Resp);
+            if (Resp == 0) {
+              Swal.fire({
+                title: "Desea registrar un nuevo jugador?",
+                showDenyButton: true,
+                confirmButtonText: "Si, registrar",
+                denyButtonText: `No, mejor no`,
+              }).then((result) => {
+                if (result.isConfirmed) {
+                  Limpiar();
+                  location.reload();
+                } else if (result.isDenied) {
+                  Swal.fire("Has cancelado el registro", "", "info");
+                }
+              });
+            } else {
+              MostrarAlerta("Error", "Error al insertar", "error");
+            }
+          },
+          "json"
+        );
+      }
     } else {
-      $.post(
-        "./Php/RegistrarJugador.php",
-        {
-          nom: vnombre,
-          app: vapp,
-          apm: vapm,
-          fecn: vfecn,
-          nac: vnac,
-          pos: vpos,
-          dor: vdor,
-        },
-        function (ret) {
-          console.log(ret);
-          var Resp = ret.resultado;
-          console.log(Resp);
-          if (Resp == 0) {
-            Swal.fire({
-              title: "Desea registrar un nuevo jugador?",
-              showDenyButton: true,
-              confirmButtonText: "Si, registrar",
-              denyButtonText: `No, mejor no`,
-            }).then((result) => {
-              if (result.isConfirmed) {
-                Limpiar();
-                location.reload();
-              } else if (result.isDenied) {
-                Swal.fire("Has cancelado el registro", "", "info");
-              }
-            });
-          } else {
-            MostrarAlerta("Error", "Error al insertar", "error");
-          }
-        },
-        "json"
-      );
+      Swal.fire("Es una modificación");
     }
   });
   //--------------------------------------------------------------------------------------------------
@@ -81,9 +87,9 @@ $("document").ready(function () {
       input: "text",
       showCancelButton: true,
       confirmButtonText: "Eliminar",
-      confirmButtonColor:"#19cc16",
+      confirmButtonColor: "#19cc16",
       cancelButtonText: "Cancelar",
-      cancelButtonColor:"#db0226",
+      cancelButtonColor: "#db0226",
     }).then((result) => {
       if (result.value) {
         let Id = result.value;
@@ -100,7 +106,7 @@ $("document").ready(function () {
             },
             "json"
           );
-        } 
+        }
       }
     });
   });
@@ -113,9 +119,9 @@ $("document").ready(function () {
       input: "text",
       showCancelButton: true,
       confirmButtonText: "Ok",
-      confirmButtonColor:"#19cc16",
+      confirmButtonColor: "#19cc16",
       cancelButtonText: "Cancelar",
-      cancelButtonColor:"#db0226",
+      cancelButtonColor: "#db0226",
     }).then((result) => {
       if (result.value) {
         let Id = result.value;
@@ -139,7 +145,7 @@ $("document").ready(function () {
             },
             "json"
           );
-        } 
+        }
       }
     });
   });
