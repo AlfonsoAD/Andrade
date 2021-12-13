@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>INICIO DE SESIÓN - SAN PANCHO FC</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="./RecursosSA/package/dist/sweetalert2.all.min.js"></script>
+    <link rel="stylesheet" href="./RecursosSA/package/dist/sweetalert2.min.css">
+    <script src="Inicio.js"></script>
+    <link rel="stylesheet" href="Css/EstiloInicio.css" />
+  </head>
+
+  <body>
+<!-- Formulario -->
+    <div class="login-box">
+      <img src="img/Logo.png" class="avatar" alt="Avatar Image" />
+      <h1>BIENVENIDO</h1>
+      <h3>SAN PANCHO FC</h3>
+      <form>
+        <!-- USUARIO -->
+        <label for="Usuario">Usuario</label>
+        <input type="text" id="IdUser" placeholder="Ingresa tu usuario" />
+
+        <!-- CONTRASEÑA -->
+        <label for="Contraseña">Contraseña</label>
+        <input
+          type="password"
+          id="IdPass"
+          autocomplete="on";
+          placeholder="Escribe tu contraseña"
+        />
+        <!--Boton para ingresar-->
+        <input type="button" id="IdIngresar" class="Boton" value="INGRESAR" />
+      </form>
+    </div>
+  </body>
+</html>
