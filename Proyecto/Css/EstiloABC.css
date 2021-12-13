@@ -81,6 +81,22 @@ body {
   background: #50eb4b;
 }
 
+.Formulario .btn-cancel {
+  border: none;
+  outline: none;
+  height: 50px;
+  width: 245px;
+  background: #f54242;
+  color: #fff;
+  font-size: 18px;
+  border-radius: 10px;
+}
+
+.Formulario .btn-cancel:hover {
+  cursor: pointer;
+  background: #f56c62;
+}
+
 /*Estilos para contenedor de la tabla y tabla*/
 .col-lg-12 {
   background: #e7f4fc;

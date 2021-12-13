@@ -15,7 +15,12 @@ $("document").ready(function () {
     Swal.fire(titulo, descripcion, tipoError);
   }
   //--------------------------------------------------------------------------------------------
-  //Realizar una alta en la base de datos
+  //Cancelar alta y modificación
+  $("#btnCancelarru").click(function () {
+    location.reload();
+  });
+  //--------------------------------------------------------------------------------------------
+  //Realizar una alta y modificación en la base de datos
   $("#btnRegistrar").click(function () {
     var vidj = $("#idJugador").val();
     var vnombre = $("#idNombre").val();
@@ -27,6 +32,7 @@ $("document").ready(function () {
     var vdor = $("#idDorsal").val();
 
     if (vidj == "") {
+      //Alta
       if (
         (vnombre == "") |
         (vapp == "") |
@@ -74,8 +80,55 @@ $("document").ready(function () {
           "json"
         );
       }
+      //Modificación
     } else {
-      Swal.fire("Es una modificación");
+      if (
+        (vnombre == "") |
+        (vapp == "") |
+        (vapm == "") |
+        (vfecn == "") |
+        (vnac == "") |
+        (vpos == "") |
+        (vdor == "")
+      ) {
+        MostrarAlerta("Error", "Llena todos los campos", "error");
+      } else {
+        $.post(
+          "./Php/Modificar.php",
+          {
+            id: vidj,
+            nom: vnombre,
+            app: vapp,
+            apm: vapm,
+            fecn: vfecn,
+            nac: vnac,
+            pos: vpos,
+            dor: vdor,
+          },
+          function (ret) {
+            var Resp = ret.resultado;
+
+            if (Resp == 0) {
+              Swal.fire({
+                title: "Desea modificar datos de este jugador?",
+                showDenyButton: true,
+                confirmButtonText: "Si, lo quiero hacer",
+                denyButtonText: `No, mejor no`,
+              }).then((result) => {
+                if (result.isConfirmed) {
+                  Limpiar();
+                  location.reload();
+                } else if (result.isDenied) {
+                  Swal.fire("Has cancelado la modificación", "", "info");
+                }
+              });
+            } else {
+              MostrarAlerta("Error", "Error al modificar", "error");
+            }
+          },
+          "json"
+        );
+      }
     }
   });
   //--------------------------------------------------------------------------------------------------
