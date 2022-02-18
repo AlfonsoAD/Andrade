@@ -71,6 +71,7 @@ $("document").ready(function () {
                   location.reload();
                 } else if (result.isDenied) {
                   Swal.fire("Has cancelado el registro", "", "info");
+                  location.reload();
                 }
               });
             } else {
@@ -120,6 +121,7 @@ $("document").ready(function () {
                   location.reload();
                 } else if (result.isDenied) {
                   Swal.fire("Has cancelado la modificación", "", "info");
+                  location.reload();
                 }
               });
             } else {
